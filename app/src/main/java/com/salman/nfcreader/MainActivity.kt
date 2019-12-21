@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             with(parcelables) {
                 val inNdefMessage = this[0] as NdefMessage
                 val inNdefRecords = inNdefMessage.records
+                //if there are many records, you can call inNdefRecords[1] as array
                 val ndefRecord_0 = inNdefRecords[0]
                 val inMessage = String(ndefRecord_0.payload)
                 txttext.setText(inMessage);
