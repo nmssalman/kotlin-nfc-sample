@@ -41,12 +41,17 @@ class MainActivity : AppCompatActivity() {
         intentFiltersArray = arrayOf(ndef)
         if (nfcAdapter == null) {
             val builder = AlertDialog.Builder(this@MainActivity, R.style.MyAlertDialogStyle)
-            builder.setMessage("Not Eligible for this Device")
+            builder.setMessage("This device doesn't support NFC.")
             builder.setPositiveButton("Cancel", null)
+            val myDialog = builder.create()
+            myDialog.setCanceledOnTouchOutside(false)
+            myDialog.show()
+            txttitle.setText("THIS DEVICE DOESN'T SUPPORT NFC. PLEASE TRY WITH ANOTHER DEVICE!")
         } else if (!nfcAdapter!!.isEnabled) {
             val builder = AlertDialog.Builder(this@MainActivity, R.style.MyAlertDialogStyle)
             builder.setTitle("NFC Disabled")
             builder.setMessage("Plesae Enable NFC")
+            txttitle.setText("NFC IS NOT ENABLED. PLEASE ENABLE NFC IN SETTINGS->NFC")
             builder.setPositiveButton("Settings") { _, _ -> startActivity(Intent(Settings.ACTION_NFC_SETTINGS)) }
             builder.setNegativeButton("Cancel", null)
             val myDialog = builder.create()
