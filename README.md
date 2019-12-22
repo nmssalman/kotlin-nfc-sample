@@ -8,7 +8,7 @@ NFC NDEF tag detection using Kotlin and Android studio
 # Manifest file should be like below
 
   ```
-  <?xml version="1.0" encoding="utf-8"?>
+ <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.salman.nfcreader">
     <uses-permission android:name="android.permission.NFC" />
@@ -23,23 +23,13 @@ NFC NDEF tag detection using Kotlin and Android studio
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <!-- NFCフィルター -->
-            <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
@@ -47,4 +37,5 @@ NFC NDEF tag detection using Kotlin and Android studio
     </application>
 
 </manifest>
+
   ```
