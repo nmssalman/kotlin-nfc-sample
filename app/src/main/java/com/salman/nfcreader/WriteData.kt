@@ -12,6 +12,7 @@ import android.nfc.tech.NfcF
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,6 +29,7 @@ class WriteData : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_write_data)
 
         btnback.setOnClickListener {
@@ -76,7 +78,9 @@ class WriteData : AppCompatActivity() {
 try {
 
     if(!txttexttowrite.text.toString().equals("")) {
-        val text = txttexttowrite.text.toString()
+
+
+        val text  =  txttexttowrite.text.toString()
 
         if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action
             || NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action
@@ -105,7 +109,7 @@ try {
 }
 catch (Ex:Exception)
 {
-
+    Toast.makeText(applicationContext, Ex.message, Toast.LENGTH_SHORT).show()
 }
 
 

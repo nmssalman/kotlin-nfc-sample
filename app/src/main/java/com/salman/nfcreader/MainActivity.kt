@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -26,9 +27,12 @@ class MainActivity : AppCompatActivity() {
     }
     private var pendingIntent: PendingIntent? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide();
         setContentView(R.layout.activity_main)
+
 
 
         btnwrite.setOnClickListener {
@@ -85,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 //if there are many records, you can call inNdefRecords[1] as array
                 val ndefRecord_0 = inNdefRecords[0]
                 val inMessage = String(ndefRecord_0.payload)
-                txttext.setText(inMessage.replace("en", ""))
+                txttext.setText(inMessage.drop(3))
             }
         }
 
