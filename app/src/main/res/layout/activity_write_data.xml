@@ -18,14 +18,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Read NFC Data"
+            android:text="Write NFC Data"
             android:textColor="#FFFFFF"
             android:textSize="20sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:text="Bring near the NFC tag to the device!"
+            android:text="Enter the text in the below text box and bring the nfc tag near!"
             android:textColor="#FFFFFF"
             android:textSize="16sp"/>
 
@@ -43,32 +43,24 @@
         android:layout_alignParentBottom="true"
         android:gravity="center">
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="Data will be Display here!"
-            android:textColor="#FFFFFF"
-            android:id="@+id/txttext"
-            android:textSize="20sp"/>
+            android:background="@drawable/edit_text_top"
+            android:hint="Data to Write!"
+            android:id="@+id/txttexttowrite"
+            android:inputType="textPersonName"
+            android:padding="15dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="All the Readed contents will display above!"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/button"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Write Data!"
+            android:text="Back!"
             android:textAllCaps="false"
-            android:id="@+id/btnwrite"
+            android:id="@+id/btnback"
             android:textColor="#FE5295"
             android:textSize="17sp"/>
 

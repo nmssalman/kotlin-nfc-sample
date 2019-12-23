@@ -14,11 +14,11 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
-
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_write_data.*
+import java.lang.Exception
 
-class MainActivity : AppCompatActivity() {
+class WriteData : AppCompatActivity() {
     private var intentFiltersArray: Array<IntentFilter>? = null
     private val techListsArray = arrayOf(arrayOf(NfcF::class.java.name))
     private val nfcAdapter: NfcAdapter? by lazy {
@@ -28,11 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_write_data)
 
-
-        btnwrite.setOnClickListener {
-            val intent = Intent(this, WriteData::class.java)
+        btnback.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
         //nfc process start
@@ -47,18 +46,18 @@ class MainActivity : AppCompatActivity() {
         }
         intentFiltersArray = arrayOf(ndef)
         if (nfcAdapter == null) {
-            val builder = AlertDialog.Builder(this@MainActivity, R.style.MyAlertDialogStyle)
+            val builder = AlertDialog.Builder(this@WriteData, R.style.MyAlertDialogStyle)
             builder.setMessage("This device doesn't support NFC.")
             builder.setPositiveButton("Cancel", null)
             val myDialog = builder.create()
             myDialog.setCanceledOnTouchOutside(false)
             myDialog.show()
-            txttext.setText("THIS DEVICE DOESN'T SUPPORT NFC. PLEASE TRY WITH ANOTHER DEVICE!")
+           // txttext.setText("THIS DEVICE DOESN'T SUPPORT NFC. PLEASE TRY WITH ANOTHER DEVICE!")
         } else if (!nfcAdapter!!.isEnabled) {
-            val builder = AlertDialog.Builder(this@MainActivity, R.style.MyAlertDialogStyle)
+            val builder = AlertDialog.Builder(this@WriteData, R.style.MyAlertDialogStyle)
             builder.setTitle("NFC Disabled")
             builder.setMessage("Plesae Enable NFC")
-            txttext.setText("NFC IS NOT ENABLED. PLEASE ENABLE NFC IN SETTINGS->NFC")
+           // txttext.setText("NFC IS NOT ENABLED. PLEASE ENABLE NFC IN SETTINGS->NFC")
             builder.setPositiveButton("Settings") { _, _ -> startActivity(Intent(Settings.ACTION_NFC_SETTINGS)) }
             builder.setNegativeButton("Cancel", null)
             val myDialog = builder.create()
@@ -74,20 +73,43 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+try {
 
+    if(!txttexttowrite.text.toString().equals("")) {
+        val text = txttexttowrite.text.toString()
 
-        val action = intent.action
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED == action) {
-            val parcelables = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES)
-            with(parcelables) {
-                val inNdefMessage = this[0] as NdefMessage
-                val inNdefRecords = inNdefMessage.records
-                //if there are many records, you can call inNdefRecords[1] as array
-                val ndefRecord_0 = inNdefRecords[0]
-                val inMessage = String(ndefRecord_0.payload)
-                txttext.setText(inMessage.replace("en", ""))
+        if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action
+            || NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action
+        ) {
+
+            val tag = intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG) ?: return
+            val ndef = Ndef.get(tag) ?: return
+
+            if (ndef.isWritable) {
+
+                val record = NdefRecord.createTextRecord("en", text)
+                val msg = NdefMessage(record);
+
+                ndef.connect()
+                ndef.writeNdefMessage(msg)
+                ndef.close()
+                Toast.makeText(applicationContext, "Successfully Wroted!", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+    }
+    else
+    {
+        Toast.makeText(applicationContext, "Write on text box!", Toast.LENGTH_SHORT).show()
+    }
+}
+catch (Ex:Exception)
+{
+
+}
+
+
+
 
     }
 
