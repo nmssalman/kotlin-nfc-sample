@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,10 +27,7 @@
             android:text="Bring near the NFC tag to the device!"
             android:textColor="#FFFFFF"
             android:textSize="16sp"/>
-
     </LinearLayout>
-
-
     <LinearLayout
         android:id="@+id/input_group"
         android:layout_width="match_parent"
@@ -42,7 +38,6 @@
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
         android:gravity="center">
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,19 +55,17 @@
             android:text="All the Readed contents will display above!"
             android:textColor="#FFFFFF"
             android:textSize="16sp"/>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/button"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Write Data!"
+            android:text="Write NFC!"
             android:textAllCaps="false"
             android:id="@+id/btnwrite"
             android:textColor="#FE5295"
             android:textSize="17sp"/>
-
-
-
     </LinearLayout>
 </RelativeLayout>
