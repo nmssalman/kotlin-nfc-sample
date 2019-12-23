@@ -5,6 +5,15 @@ NFC NDEF Reader and Writer. there are two separate activities for reading and wr
 1. Clone the Project
 2. Open with Android Studio
 
+# Description
+
+1. There are two activities contain in the project.
+
+Main Activity -: Reading Data
+Write Data -: Write Data
+
+2. There are no external dependancies required
+
 # Manifest file should be like below
 
   ```
