@@ -61,7 +61,7 @@
             android:text="Read NFC!"
             android:textAllCaps="false"
             android:id="@+id/btnback"
-            android:textColor="#FE5295"
+            android:textColor="#0099ff"
             android:textSize="17sp"/>
 
     </LinearLayout>
