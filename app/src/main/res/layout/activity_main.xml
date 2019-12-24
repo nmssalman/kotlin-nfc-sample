@@ -68,5 +68,14 @@
             android:id="@+id/btnwrite"
             android:textColor="#0099ff"
             android:textSize="17sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textAlignment="textEnd"
+            android:text="By Mohamed Salman"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"/>
     </LinearLayout>
 </RelativeLayout>
