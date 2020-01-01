@@ -43,14 +43,28 @@
         android:layout_alignParentBottom="true"
         android:gravity="center">
 
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_top"
-            android:hint="Data to Write!"
-            android:id="@+id/txttexttowrite"
+            android:hint="Shop ID"
+            android:id="@+id/txtshopid"
+            android:layout_marginBottom="10dp"
             android:inputType="textPersonName"
             android:padding="15dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_top"
+            android:hint="Machine ID"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/txtmachineid"
+            android:inputType="textPersonName"
+            android:padding="15dp" />
+
 
         <Button
             android:layout_width="match_parent"
@@ -69,7 +83,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
             android:textAlignment="textEnd"
-            android:text="By Mohamed Salman"
+            android:text="Testing Purposes"
             android:textColor="#FFFFFF"
             android:textSize="13sp"/>
 

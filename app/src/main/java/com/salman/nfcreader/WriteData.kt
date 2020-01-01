@@ -1,5 +1,6 @@
 package com.salman.nfcreader
 
+import android.R.id.message
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentFilter
@@ -9,15 +10,13 @@ import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.Ndef
 import android.nfc.tech.NfcF
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Base64
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_write_data.*
-import java.lang.Exception
+
 
 class WriteData : AppCompatActivity() {
     private var intentFiltersArray: Array<IntentFilter>? = null
@@ -77,10 +76,12 @@ class WriteData : AppCompatActivity() {
         super.onNewIntent(intent)
 try {
 
-    if(!txttexttowrite.text.toString().equals("")) {
+    if(!txtmachineid.text.toString().equals("") && !txtshopid.text.toString().equals("") ) {
 
 
-        val text  =  txttexttowrite.text.toString()
+
+        val shopid=txtshopid.text.toString()
+        val machineid=txtmachineid.text.toString()
 
         if (NfcAdapter.ACTION_TECH_DISCOVERED == intent.action
             || NfcAdapter.ACTION_NDEF_DISCOVERED == intent.action
@@ -91,12 +92,21 @@ try {
 
             if (ndef.isWritable) {
 
-                val record = NdefRecord.createTextRecord("en", text)
-                val msg = NdefMessage(record);
+               var message = NdefMessage(
+                    arrayOf(
+                        NdefRecord.createTextRecord("en", shopid),
+                        NdefRecord.createTextRecord("en", machineid)
+//                        NdefRecord.createTextRecord("en", userid)
+
+                    )
+                )
+
 
                 ndef.connect()
-                ndef.writeNdefMessage(msg)
+                ndef.writeNdefMessage(message)
                 ndef.close()
+
+
                 Toast.makeText(applicationContext, "Successfully Wroted!", Toast.LENGTH_SHORT)
                     .show()
             }
